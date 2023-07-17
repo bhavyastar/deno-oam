@@ -1,0 +1,20 @@
+apiVersion: core.oam.dev/v1beta1
+kind: ComponentDefinition
+metadata:
+  name: todo-app
+spec:
+    settings:
+      image: bhavyasachdeva/todo_app:latest
+      command: ["deno", "run"]
+      args: ["--unstable", "https://raw.githubusercontent.com/bhavyastar/deno-example/main/mod.ts"]
+
+---
+
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: deno-app
+spec:
+  components:
+    - name: todo-app-instance
+      type: todo-app
